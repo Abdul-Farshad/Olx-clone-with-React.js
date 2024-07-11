@@ -12,6 +12,9 @@
   justify-content: space-between;
   align-items: center;
 }
+.brandName{
+  cursor: pointer;
+}
 
 .placeSearch {
   width: 16em;
@@ -94,26 +97,60 @@
   margin-right: 5px;
 }
 
-.language svg {
+.loginUser{
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-radius: 8px;
 }
 
-.span {
+.loginUser span {
   text-decoration: none;
   font-size: 16px;
   white-space: normal;
   text-overflow: ellipsis;
   font-weight: bolder;
   margin-right: 5px;
+  cursor: pointer;
+}
+.dropdown {
+  position: absolute;
+  display: inline-block;
+  top: 50px;
+  right: 150px;
 }
 
-.loginPage hr {
+.dropdown-content {
+  position: absolute;
+  min-width: 150px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 6px;
+  background-color: #002f34;
+}
+
+/* Links inside the dropdown */
+.dropdown-content ui {
+  list-style: none;
+  color: white;
+  padding: 12px 16px;
+  display: block;
+  text-align: start;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.loginUser hr {
   margin: 0;
   background-color: black;
   height: 2px;
 }
 
-.loginPage a{
+.loginUser a{
   text-decoration: none;
+  color: #002f34;
 }
 
 .sellMenu {

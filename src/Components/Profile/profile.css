@@ -1,0 +1,64 @@
+/* profile.css */
+.profile-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    text-align: center;
+  }
+  
+  .user-icon-container {
+    margin-bottom: 20px;
+  }
+  
+  .user-details {
+    margin-bottom: 20px;
+  }
+  
+  .user-detail-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    align-items: start;
+    margin-bottom: 10px;
+  }
+  
+  
+  .user-detail-key {
+    display: flex;
+    justify-content: start;
+    font-weight: bold;
+    color: #333;
+
+  }
+  
+  .user-detail-value {
+    margin-left: 5px;
+    color: #555;
+    display: flex;
+    text-align: start;
+  }
+  
+  .logout-btn-container {
+    text-align: center;
+  }
+  
+  .logout-btn {
+    width: 100%;
+    height: 40px;
+    margin-top: 10px;
+    background-color: #dc3545;
+    color: whitesmoke;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    border: 2px solid #dc3545;
+    transition: all 0.2s ease;
+  }
+  .logout-btn:hover {
+    background-color: white;
+    color: #dc3545;
+  }

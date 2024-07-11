@@ -1,50 +1,91 @@
 .viewParentDiv {
   padding-top: 4em;
+}
+
+.imageShowDiv {
+  padding: 16px;
   display: flex;
-}
-.viewParentDiv .imageShowDiv {
-  padding: 16px;
-  width: 70vw;
-}
-.viewParentDiv .imageShowDiv img {
-  width: 65vw;
-  height: 85vh;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
 }
 
-.viewParentDiv .rightSection {
-  padding: 16px;
-  margin-top: 3em;
-  width: 30vw;
+.imageShowDiv img {
+  max-width: 100%;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 6px;
 }
 
-.viewParentDiv .rightSection .productDetails :first-child {
+.rightSection {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.productDetails {
+  border: 1px solid #ccc;
+  padding: 16px;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.productDetails p, 
+.productDetails span {
+  margin: 0;
+}
+
+.productDetails p:first-child {
   font-weight: 700;
   margin-bottom: 8px;
   color: #002f34;
   font-size: 34px;
   line-height: 32px;
-  margin-bottom: 20px;
 }
 
-.viewParentDiv .rightSection .productDetails {
-  border: 1px solid black;
-  padding: 6px;
+.product-name {
+  display: block;
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.product-category,
+.created-date {
+  font-size: 14px;
+  color: #555;
+}
+
+.contactDetails {
+  padding: 16px;
+  border: 1px solid #ccc;
   border-radius: 6px;
-  margin-bottom: 2em;
-  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.viewParentDiv .rightSection .contactDetails {
-  border: 1px solid black;
-  padding: 6px;
-  border-radius: 6px;
-}
-
-.viewParentDiv .rightSection .contactDetails :first-child {
+.section-title {
   font-size: 20px;
   line-height: 24px;
   font-weight: 700;
   color: #002f34;
+  margin-bottom: 16px;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.detail-key {
+  font-weight: 600;
+  color: #333;
+  width: 30%;
+}
+
+.detail-value {
   font-weight: 400;
-  padding: 0;
+  color: #555;
+  width: 70%;
 }

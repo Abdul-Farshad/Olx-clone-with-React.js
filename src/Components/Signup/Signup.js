@@ -1,22 +1,90 @@
-import React from 'react';
-
-import Logo from '../../olx-logo.png';
-import './Signup.css';
+import React, { useState, useRef , useEffect } from "react";
+import Logo from "../../olx-logo.png";
+import "./Signup.css";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../firebase/config";
+import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
+  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState();
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const auth = getAuth();
+  const navigate = useNavigate();
+  const confirmPassRef = useRef(null);
+  const nameRef = useRef(null)
+
+  useEffect(() => {
+    nameRef.current.focus()
+  },[])
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (password !== confirmPassword) {
+      setError("Password do not match!");
+      confirmPassRef.current.focus();
+      return;
+    }
+    setLoading(true);
+    setError(false);
+
+    try {
+      // Sign up process
+      const userCred = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      if (!userCred || !userCred.user) {
+        throw new Error("User creation failed");
+      }
+      await updateProfile(userCred.user, { displayName: userName });
+
+      // Add other data to fireStore db
+      await addDoc(collection(db, "users"), {
+        id: userCred.user.uid,
+        userName,
+        phone,
+      });
+
+      setLoading(false);
+      navigate("/login");
+    } catch (err) {
+      setLoading(false);
+      if (err.code === "auth/email-already-in-use") {
+        setError("Email address is already in use. Please use a different email.");
+      }
+      console.error(err.message);
+    }
+  };
   return (
-    <div>
+    <div className="signupContainer">
       <div className="signupParentDiv">
-        <img width="200px" height="200px" src={Logo}></img>
-        <form>
+        <img className="logo" src={Logo} alt="Logo"></img>
+        <form onSubmit={handleSubmit}>
+          {error && <p className="errorMsg">{error}</p>}
           <label htmlFor="fname">Username</label>
           <br />
           <input
             className="input"
             type="text"
             id="fname"
+            value={userName}
             name="name"
-            defaultValue="John"
+            onChange={(e) => setUserName(e.target.value)}
+            ref={nameRef}
+            required
           />
           <br />
           <label htmlFor="fname">Email</label>
@@ -26,33 +94,54 @@ export default function Signup() {
             type="email"
             id="fname"
             name="email"
-            defaultValue="John"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
           />
           <br />
-          <label htmlFor="lname">Phone</label>
+          <label htmlFor="phoneNumber">Phone</label>
           <br />
           <input
             className="input"
             type="number"
-            id="lname"
+            id="number"
             name="phone"
-            defaultValue="Doe"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            required
           />
           <br />
-          <label htmlFor="lname">Password</label>
+          <label htmlFor="password">Password</label>
           <br />
           <input
             className="input"
             type="password"
-            id="lname"
+            id="password"
             name="password"
-            defaultValue="Doe"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <br />
+          <label htmlFor="confirmPassword">Confirm Password</label>
+          <br />
+          <input
+            className="input"
+            type="password"
+            id="confirmPassword"
+            name="confirmPassword"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            ref={confirmPassRef}
+            required
           />
           <br />
           <br />
-          <button>Signup</button>
+          <button type="submit" disabled={loading}>
+            {loading ? "Signing up..." : "Signup"}
+          </button>
         </form>
-        <a>Login</a>
+        <a href="/login">Login</a>
       </div>
     </div>
   );

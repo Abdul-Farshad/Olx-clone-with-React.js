@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Signup from '../Components/Signup/Signup';
-
+import WithNoAuth from '../Components/withAuth/WithNoAuth';
 function SignupPage() {
   return (
     <div>
@@ -10,4 +10,4 @@ function SignupPage() {
   );
 }
 
-export default SignupPage;
+export default WithNoAuth(SignupPage);

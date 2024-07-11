@@ -1,19 +1,14 @@
-.moreView {
-  margin: 16px 16px 24px;
-  padding: 16px 16px 32px;
-  background-color: #ebeeef;
-  border-radius: 4px;
-}
-
 .heading {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
 }
+
 .heading :first-child {
   font-size: 24px;
   color: #002f34;
+  margin-bottom: 20px;
 }
 
 .heading :last-child {
@@ -21,63 +16,8 @@
   color: #002f34;
 }
 
-.recommendations .cards {
-  display: flex;
-}
-
-.moreView .cards {
-  white-space: nowrap;
-  overflow-x: scroll;
-  overflow-y: hidden;
-}
-
-.card {
-  margin-right: 15px;
-  padding: 13px;
-  max-width: 222px;
-  width: 222px;
-  height: 270px;
-  display: inline-block;
-  cursor: pointer;
-}
-
-.card .favorite {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-.card .image {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.card .image img {
-  height: 100px;
-  max-width: 100%;
-  max-height: 100%;
-  min-height: 100%;
-  text-align: center;
-}
-.card .content .rate {
-  margin-top: 10px;
-  font-size: larger;
-  font-weight: bold;
-}
-.card .content .kilometer {
-  font-size: medium;
-}
-.card .content .name {
-  font-size: small;
-}
-.card .date {
-  display: flex;
-  justify-content: flex-end;
-  font-size: small;
-}
-
 .recommendations {
+  padding: 20px;
   margin: 16px 16px 24px;
 }
 
@@ -85,3 +25,94 @@
   font-size: 24px;
   color: #002f34;
 }
+
+.recommendations .cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.card {
+  border: 1px solid #ccc;
+  padding: 0 10px;
+  width: 100%;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card .fav-icon-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.card .favorite {
+  padding: 6px;
+  border-radius: 50%;
+}
+
+.card .image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  height: 200px;
+}
+
+.card .image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.card .content {
+  padding: 10px 0; /* Adjusted padding for content */
+}
+
+.card .content .rate {
+  font-size: larger;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.card .content .name {
+  font-size: medium;
+  font-weight: 500;
+}
+
+.card .content .category {
+  font-size: medium;
+}
+
+.card .date {
+  display: flex;
+  justify-content: flex-end;
+  font-size: small;
+}
+
+/* Media Queries for Responsiveness */
+
+/* @media (max-width: 1200px) {
+  .recommendations .cards {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 992px) {
+  .recommendations .cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+} */
+
+/* @media (max-width: 768px) {
+  .recommendations .cards {
+    grid-template-columns: repeat(2, 1fr); 
+  }
+} */
+
+/* @media (max-width: 576px) {
+  .recommendations .cards {
+    grid-template-columns: 1fr; 
+  }
+} */
